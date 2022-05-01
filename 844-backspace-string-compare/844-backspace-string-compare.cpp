@@ -6,7 +6,6 @@ public:
         int i=0;
         while(s[i] != '\0'){
             if(s[i] == '#' && !s1.empty()){
-                cout<<"s1.pop()="<<s1.top()<<endl;
                 s1.pop();
             }else if(s[i]!='#'){
                 s1.push(s[i]);
@@ -17,7 +16,6 @@ public:
         i = 0 ;
         while(t[i] != '\0'){
             if(t[i] == '#' && !t1.empty()){
-                cout<<"t1.pop()="<<t1.top()<<endl;
                 t1.pop();
             }else if(t[i]!='#') {
                 t1.push(t[i]);
