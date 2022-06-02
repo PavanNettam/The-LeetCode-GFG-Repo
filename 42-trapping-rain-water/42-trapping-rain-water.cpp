@@ -1,21 +1,23 @@
 class Solution {
 public:
     int trap(vector<int>& height) {
-        //DP approach
+        //Two pointer approach
         int n = height.size();
+        int left = 0;
+        int right = n-1;
         int ans = 0;
-        vector<int> left(n),right(n);
-        left[0] = height[0];
-        for(int i=1;i<n;i++){
-            left[i] = (left[i-1]>height[i])?left[i-1]:height[i];
-        }
-        right[n-1] = height[n-1];
-        for(int i=n-2;i>=0;i--){
-            right[i] = (right[i+1]>height[i])?right[i+1]:height[i];
-        }
-        for(int i=0;i<n;i++){
-            int mini = (right[i]<left[i])?right[i]:left[i];
-            ans += mini-height[i];
+        int leftMax = INT_MIN;
+        int rightMax = INT_MIN;
+        while(left<right){
+            if(height[left]<height[right]){
+                if(leftMax<height[left]) leftMax = height[left];
+                else ans += leftMax-height[left];
+                left++;
+            }else{
+                if(rightMax<height[right]) rightMax = height[right];
+                else ans += rightMax-height[right];
+                right--;
+            }
         }
         return ans;
     }
