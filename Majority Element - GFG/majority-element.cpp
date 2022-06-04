@@ -15,16 +15,21 @@ class Solution{
     // size: size of input array
     int majorityElement(int a[], int size)
     {
-        int freq[1000001];
-        for(int i=0;i<1000001;i++){
-            freq[i] = 0;
-        }
+        int count = 1;
+        int idx = 0;
         for(int i=0;i<size;i++){
-            freq[a[i]]++;
+            if(a[idx] == a[i]) count++;
+            else count--;
+            if(count == 0){
+                count = 1;
+                idx = i;
+            }
         }
-        for(int i=0;i<1000001;i++){
-            if(freq[i] > size/2) return i;
+        count = 0;
+        for(int i=0;i<size;i++){
+            if(a[idx] == a[i]) count++;
         }
+        if(count > size/2) return a[idx];
         return -1;
         // your code here
         
