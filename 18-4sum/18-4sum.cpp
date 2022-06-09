@@ -10,7 +10,6 @@ public:
                 int l = j+1;
                 int r = n-1;
                 int t = target-nums[i]-nums[j];
-                //cout<<"loop entry"<<i<<j<<endl;
                 while(l<r){
                     if(nums[l]+nums[r]<t){
                         l++;
@@ -25,27 +24,19 @@ public:
                         ans.push_back(temp);
                         
                         while(l<r && nums[l]==nums[l+1]) l++;
-                        //if(l<r && nums[l-1]==nums[l]) l++;
                         while(l<r && nums[r-1]==nums[r]) r--;
-                        //if(l<r && nums[r+1]==nums[r]) r--;
+                        
                         l++;
                         r--;
                     }
-                    //cout<<i<<j<<l<<r<<endl;
-                    
+                   
                 }
-                //cout<<i<<j<<endl;
+    
                 while(j<n-2 && nums[j]==nums[j+1]) j++;
-                //cout<<i<<j<<endl;
-                //if(j<n-2 && nums[j]==nums[j-1]) j++;
-                //cout<<i<<j<<endl;
-                //cout<<"n-2 is "<<n-2<<endl;
+
             }
-            //cout<<i<<endl;
             while(i<n-3 && nums[i]==nums[i+1]) i++;
-            //cout<<i<<endl;
-            //if(i<n-3 && i>0 &&nums[i]==nums[i-1]) i++;
-            //cout<<i<<endl;
+            
         }
         return ans;
     }
