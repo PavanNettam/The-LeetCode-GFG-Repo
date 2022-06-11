@@ -1,8 +1,7 @@
 class Solution {
 public:
     int minOperations(vector<int>& nums, int x) {
-        // int ans = recur(nums,0,nums.size()-1,x);
-        // return (ans>=1e8?-1:ans);
+        
         int n = nums.size();
         int pref[n];
         int suff[n];
