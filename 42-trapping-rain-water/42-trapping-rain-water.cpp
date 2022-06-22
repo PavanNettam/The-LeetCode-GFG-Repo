@@ -1,24 +1,23 @@
 class Solution {
 public:
     int trap(vector<int>& height) {
-        //Two pointer approach
         int n = height.size();
-        int left = 0;
-        int right = n-1;
-        int ans = 0;
-        int leftMax = INT_MIN;
-        int rightMax = INT_MIN;
-        while(left<right){
-            if(height[left]<height[right]){
-                if(leftMax<height[left]) leftMax = height[left];
-                else ans += leftMax-height[left];
-                left++;
-            }else{
-                if(rightMax<height[right]) rightMax = height[right];
-                else ans += rightMax-height[right];
-                right--;
-            }
+        if(n==1) return 0;
+        
+        vector<int> l(n,height[0]);
+        vector<int> r(n,height[n-1]);
+        for(int i=1;i<n;i++){
+            l[i] = max(height[i],l[i-1]);
         }
-        return ans;
+        for(int i=n-2;i>=0;i--){
+            r[i] = max(height[i],r[i+1]);
+        }
+        int water = 0;
+        for(int i=0;i<n;i++){
+            int h = min(l[i],r[i]);
+            int neth = h-height[i];
+            water += neth;
+        }
+        return water;
     }
 };
