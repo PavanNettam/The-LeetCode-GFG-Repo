@@ -5,7 +5,8 @@ public:
         int ans = n[0]-'0';
         while(i<n.size()){
             //cout<<ans<<" "<<int(n[i]-'0')<<endl;
-            ans = (int(n[i]-'0')>ans)?int(n[i]-'0'):ans;
+            int temp = int(n[i]-'0');
+            ans = (temp>ans)?temp:ans;
             i++;
         }
         return ans;
