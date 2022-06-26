@@ -1,22 +1,27 @@
 class Solution {
 public:
-    vector<vector<int>> merge(vector<vector<int>>& intervals) {
-         sort(intervals.begin(), intervals.end());
-         int n = intervals.size();
-         vector<vector<int>> ans;
-         for(int i=0;i<n;i++){
-             int first = intervals[i][0];
-             int second = intervals[i][1];
-             while(i+1<n && intervals[i+1][0] <= second){
-                i++;
-                second = (second>intervals[i][1])?second:intervals[i][1];
-             }
-             vector<int> v;
-             v.push_back(first);
-             v.push_back(second);
-             ans.push_back(v);
-         }
-         return ans;
+    static int sortBy(vector<int> a, vector<int> b){
+        return a[0]<b[0];
     }
-    
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        vector<vector<int>> ans;
+        int n = intervals.size();
+        if(n==1) return intervals;
+        sort(intervals.begin(),intervals.end(),sortBy);
+        int l = 0;
+        int r = l;
+        while(l<n){
+            vector<int> temp;
+            temp.push_back(intervals[l][0]);
+            int maxi = intervals[l][1];
+            while(r<n && intervals[r][0]<=maxi){
+                maxi = (maxi>intervals[r][1])?maxi:intervals[r][1];
+                r++;
+            }
+            temp.push_back(maxi);
+            ans.push_back(temp);
+            l = r;
+        }
+        return ans;
+    }
 };
