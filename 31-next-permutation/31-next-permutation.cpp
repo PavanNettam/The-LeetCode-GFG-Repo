@@ -1,46 +1,32 @@
 class Solution {
 public:
-    
     void nextPermutation(vector<int>& nums) {
         int n = nums.size();
-        if(n==1) return;
-        int flag = 0;
+        if(n == 1) return;
+        int flag = 1;
         for(int i=0;i<n-1;i++){
             if(nums[i]<nums[i+1]){
-                flag = 1;
+                flag = 0;
+                break;
             }
         }
-        for(int i=0;i<n;i++){
-            cout<<"c1"<<endl;
-            cout<<nums[i]<<endl;
-        }
-        if(flag == 0){
+        if(flag == 1){
             reverse(nums.begin(),nums.end());
             return;
         }
-        int i=n-2;
-        while(nums[i+1]<=nums[i]){
+        int i = n-2;
+        while(i>=0){
+            if(nums[i]<nums[i+1]) break;
             i--;
         }
-        for(int i=0;i<n;i++){
-            cout<<"c2"<<endl;
-            cout<<nums[i]<<endl;
-        }
         int j = n-1;
-        while(nums[j]<=nums[i]){
+        while(j>=i){
+            if(nums[j]>nums[i]) break;
             j--;
         }
-        for(int i=0;i<n;i++){
-            cout<<"c3"<<endl;
-            cout<<nums[i]<<" "<<j<<endl;
-        }
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
+        int temp = nums[j];
+        nums[j] = nums[i];
+        nums[i] = temp;
         reverse(nums.begin()+i+1,nums.end());
-        for(int i=0;i<n;i++){
-            cout<<"c4"<<endl;
-            cout<<nums[i]<<endl;
-        }
     }
 };
