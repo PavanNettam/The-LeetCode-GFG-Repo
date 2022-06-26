@@ -7,7 +7,7 @@ public:
         int r = rows-1;
         int note = -1;
         while(l<=r){
-            cout<<l<<r<<endl;
+            //cout<<l<<r<<endl;
             int mid = (l+r)/2;
             if(matrix[mid][0] == target) return 1;
             else if(matrix[mid][0] > target){
@@ -32,7 +32,7 @@ public:
                 l = mid+1;
             }
         }
-        cout<<"note"<<note<<endl;
+        //cout<<"note"<<note<<endl;
         if(note == -1){
             return 0;
         }
