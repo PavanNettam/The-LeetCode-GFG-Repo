@@ -9,7 +9,7 @@ public:
             for(int j=i+1;j<n-2;j++){
                 int l = j+1;
                 int r = n-1;
-                int t = target-nums[i]-nums[j];
+                long long t = target-(long long)(nums[i])-(long long)(nums[j]);
                 while(l<r){
                     if(nums[l]+nums[r]<t){
                         l++;
