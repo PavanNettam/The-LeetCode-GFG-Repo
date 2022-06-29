@@ -16,7 +16,6 @@ public:
                     count++;
                     ele++;
                 }
-                //cout<<count<<endl;
                 ans = max(ans,count);
             }
         }
