@@ -6,42 +6,33 @@
  * };
  */
 
-
 struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2){
-    struct ListNode* l3 = NULL;
+    if(list1 == NULL) return list2;
+    if(list2 == NULL) return list1;
     struct ListNode* p = list1;
     struct ListNode* q = list2;
     struct ListNode* r = NULL;
-    if(list1 == NULL){
-        l3 = list2;
-        return l3;
-    }else if(list2 == NULL){
-        l3 = list1;
-        return l3;
-    }
-    if(list1->val < list2->val){
-        l3 = list1;
-        p = p->next;
+    struct ListNode* ans = NULL;
+    if(p->val < q->val){
+            r = p;
+            p = p->next;
     }else{
-        l3 = list2;
-        q = q->next;
+            r = q;
+            q = q->next;
     }
-    r = l3;
+    ans = r;
     while(p!=NULL && q!=NULL){
         if(p->val < q->val){
             r->next = p;
-            r = r->next;
+            r = p;
             p = p->next;
         }else{
             r->next = q;
-            r = r->next;
+            r = q;
             q = q->next;
         }
     }
-    if(p == NULL){
-        r->next = q;
-    }else if(q == NULL){
-        r->next = p;
-    }
-    return l3;
+    if(p == NULL) r->next = q;
+    else if(q == NULL) r->next = p;
+    return ans;
 }
