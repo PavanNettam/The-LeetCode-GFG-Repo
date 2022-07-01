@@ -20,7 +20,7 @@ public:
             r = q;
             q = q->next;
         }while(p!=NULL && p->next != NULL);
-        //cout<<(q->val)<<endl;
+        
         if(p!=NULL){
             r->next = q->next;
             q = r->next;
@@ -36,8 +36,7 @@ public:
         }
         note->next = r;
         p = head;
-        // ListNode* x = head;
-        // while(x!=NULL) cout<<(x->val)<<endl;
+    
         while(r!=NULL){
             if(p->val != r->val) return 0;
             p = p->next;
