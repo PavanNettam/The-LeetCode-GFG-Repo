@@ -33,3 +33,6 @@ public:
         return ans;
     }
 };
+/*
+Actually I jst performed level order traversal and reversed all the odd indexed elements
+*/
