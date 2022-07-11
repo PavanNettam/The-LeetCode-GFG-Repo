@@ -11,17 +11,48 @@
  */
 class Solution {
 public:
-    void preorder(TreeNode* root, vector<int>& temp){
-        if(root == NULL){
-            return;
-        }
-        temp.push_back(root->val);
-        preorder(root->left,temp);
-        preorder(root->right,temp);
-    }
     vector<int> preorderTraversal(TreeNode* root) {
         vector<int> ans;
-        preorder(root,ans);
+        TreeNode* curr = root;
+        while(curr != NULL){
+            if(curr->left == NULL){
+                ans.push_back(curr->val);
+                curr = curr->right;
+            }else{
+                TreeNode* p = curr->left;
+                while(p->right != NULL && p->right != curr){
+                    p = p->right;
+                }
+                if(p->right == NULL){
+                    p->right = curr;
+                    ans.push_back(curr->val);
+                    curr = curr->left;
+                }else{
+                    p->right = NULL;
+                    curr = curr->right;
+                }
+                
+            }
+        }
         return ans;
     }
 };
+
+/*
+Same as inorder traversal but think,
+it makes more sense to put line 32 to 28.
+clearly:
+if curr's left is NULL
+    then print curr,
+    go to right.
+else
+    then find inorder predicisor,
+    if inorder predicisor's right is curr 
+        set inorder predicisor's right to curr,
+        and move right
+    else
+        then print curr,
+        make inorder predicisor's right NULL again //to ensure we are not changing the tree.
+        go to right.
+        
+*/
