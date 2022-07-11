@@ -41,4 +41,9 @@ public:
 perform level order traversal of the tree keeping in track the vertical line and horizontal line.
 insert the values of the node to corresponding vertical line indices in the map.
 make sure for overlaping co-ordinates ans must be sorted
+
+Note: 
+1. Make sure to use a multiset (so that the elements will be in sorted order if both the co-ordinates are same)
+2. map<int,map<int,multiset<int>>> {x,y,value}
+3. queue<pair<TreeNode*,pair<int,int>>> {node,x,y}
 */
