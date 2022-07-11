@@ -32,3 +32,38 @@ public:
         return ans;
     }
 };
+
+/*
+Morris algorithum,
+if(cur->left is NULL) print curr and go to right;
+else then find the inorder predicisor of cur and assign its right to cur, and make cur->left NULL move left;
+
+eg:
+    1
+   / \
+  2   3
+ / \  /
+4  5  6
+
+-> 2
+  / \
+ 4   5
+      \
+       1
+        \
+         3
+        /
+        6
+        
+-> 4
+    \
+     2
+      \
+       5
+        \ 
+         1
+          \
+           3
+          /
+         6
+*/
