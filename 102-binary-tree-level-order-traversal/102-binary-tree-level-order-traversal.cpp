@@ -27,3 +27,8 @@ public:
         return ans;
     }
 };
+/* 
+Perform pre-order traversal,
+if insert into the vector into a particular level.
+Line 17 is important
+*/
