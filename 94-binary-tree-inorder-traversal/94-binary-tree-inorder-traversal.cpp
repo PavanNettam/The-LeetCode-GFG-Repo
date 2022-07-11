@@ -20,13 +20,18 @@ public:
                 curr = curr->right;
             }else{
                 TreeNode* p = curr->left;
-                while(p->right != NULL){
+                while(p->right != NULL && p->right != curr){
                     p = p->right;
                 }
-                p->right = curr;
-                TreeNode* temp = curr;
-                curr = curr->left;
-                temp->left = NULL;
+                if(p->right == NULL){
+                    p->right = curr;
+                    curr = curr->left;
+                }else{
+                    p->right = NULL;
+                    ans.push_back(curr->val);
+                    curr = curr->right;
+                }
+                
             }
         }
         return ans;
@@ -34,9 +39,10 @@ public:
 };
 
 /*
-Morris algorithum,
+Morris algorithm,
 if(cur->left is NULL) print curr and go to right;
-else then find the inorder predicisor of cur and assign its right to cur, and make cur->left NULL move left;
+else then find the inorder predicisor of cur if its right is curr itself 
+then print curr and set p->right to NULL and curr to to its right;
 
 eg:
     1
