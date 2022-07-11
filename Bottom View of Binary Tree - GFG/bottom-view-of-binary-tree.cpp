@@ -114,7 +114,17 @@ class Solution {
         return ans;
     }
 };
+/*
+ref : https://www.youtube.com/watch?v=0FtVY6I4pB8&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=25
+data stuctures used : 
+- a map: to store the vertical line and node vals
+- a queue: for the level order traversal.
+Idea: To perform level order traversal also keeping tract of the vertical line.
+if u go left vertical line--
+if u go right vertical line++
+It happens that we reach all the bottom view elements at the end of the traversal.
 
+*/
 
 // { Driver Code Starts.
 
