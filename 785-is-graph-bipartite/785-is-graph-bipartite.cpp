@@ -33,3 +33,10 @@ public:
         return 1;
     }
 };
+
+/*
+Performed a bfs:
+Idea is to color the graph is opposite colors for adjacent nodes, if we once we visit a node we check all its adjacent nodes and see if they are colored.
+(1) If they are not colored then color oppositely 
+(2) else check the already existing color if its not opposite then reutrn false.
+*/
