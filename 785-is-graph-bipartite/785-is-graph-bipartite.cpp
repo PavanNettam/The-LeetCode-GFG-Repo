@@ -29,3 +29,8 @@ public:
         return 1;
     }
 };
+
+/*
+Using DFS:
+Traverse and check for opposite color
+*/
