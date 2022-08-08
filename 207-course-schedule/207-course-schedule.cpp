@@ -39,4 +39,7 @@ public:
 /*
 If we use the undirected graph alogo to find cycles then it detects cycle even though there is no cycle.
 Thus to avoid this we use two visited vectors and update the second to unvisited while we back track.
+Here v is the first visited array,
+and temp is the second visited array.
+temp will be updated to not visited while we backtrack.
 */
