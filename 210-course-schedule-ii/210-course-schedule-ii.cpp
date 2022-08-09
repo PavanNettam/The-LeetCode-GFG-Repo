@@ -38,3 +38,9 @@ public:
         return ans;
     }
 };
+
+/*
+Using Khan's algorithm:
+Find the topological sort of the graph,
+topo sort is only possible for DAG, thus if a cycle is detected then the graph is not completely traversed.
+*/
