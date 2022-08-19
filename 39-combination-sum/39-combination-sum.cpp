@@ -22,3 +22,10 @@ public:
         return ans;
     }
 };
+
+/*
+-Pick a number any number of times.
+so no updation of index for left sub-tree.
+go to right sub-tree if we hv to advance the index
+this happens when target cannot be further reduced.
+*/
