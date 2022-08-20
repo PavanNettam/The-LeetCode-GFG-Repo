@@ -33,3 +33,8 @@ public:
         return ans;
     }
 };
+/*
+upper diagonal can simply be represented as (n-1+col-row)
+lower diagonal as (col+row)
+left row as row itself
+*/
