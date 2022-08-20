@@ -1,34 +1,35 @@
 class Solution {
 public:
-    int isValid(vector<string>& temp, int& row, int& col, int &n){
-        for(int i=0;i<row;i++){
-            if(temp[i][col] == 'Q') return 0;
-        }
-        for(int i=row-1,j=col-1;j>=0 && i>=0;i--,j--){
-            if(temp[i][j] == 'Q') return 0;
-        }
-        for(int i=row-1,j=col+1;i>=0 && j<n;i--,j++){
-            if(temp[i][j] == 'Q') return 0;
-        }
-        return 1;
-    }
-    void solve(vector<vector<string>>&ans, vector<string>& temp, int row, int& n){
-        if(row == n){
-            ans.push_back(temp);
+    void solve(vector<vector<string>>& ans, vector<string>& board, vector<int>& leftRow, vector<int>& upperDgl, vector<int>& lowerDgl,int col,int n){
+        if(col == n){
+            ans.push_back(board);
             return;
         }
-        for(int col = 0;col<n;col++){
-            if(isValid(temp,row,col,n)){
-                temp[row][col] = 'Q';
-                solve(ans,temp,row+1,n);
-                temp[row][col] = '.';
+        for(int row=0;row<n;row++){
+            if(leftRow[row] == 0 && upperDgl[n-1+col-row] == 0 && lowerDgl[col+row] == 0){
+                leftRow[row] = 1;
+                upperDgl[n-1+col-row] = 1;
+                lowerDgl[col+row] = 1;
+                board[row][col] = 'Q';
+                solve(ans,board,leftRow,upperDgl,lowerDgl,col+1,n);
+                leftRow[row] = 0;
+                upperDgl[n-1+col-row] = 0;
+                lowerDgl[col+row] = 0;
+                board[row][col] = '.';
             }
         }
     }
     vector<vector<string>> solveNQueens(int n) {
         vector<vector<string>> ans;
-        vector<string> temp(n, string(n, '.'));
-        solve(ans,temp,0,n);
+        string s(n,'.');
+        vector<string> board;
+        for(int i=0;i<n;i++){
+            board.push_back(s);
+        }
+        vector<int> leftRow(n,0);
+        vector<int> upperDgl(2*n-1,0);
+        vector<int> lowerDgl(2*n-1,0);
+        solve(ans,board,leftRow,upperDgl,lowerDgl,0,n);
         return ans;
     }
 };
