@@ -20,3 +20,9 @@ public:
         return ans;
     }
 };
+
+/*
+Principle of inclusion and exclusion modified:
+at each level generate the subsets of size level
+take care of repeated elements
+*/
