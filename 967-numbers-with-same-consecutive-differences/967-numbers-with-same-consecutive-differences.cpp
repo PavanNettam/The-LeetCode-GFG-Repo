@@ -24,3 +24,9 @@ public:
         return ans;
     }
 };
+/*
+Consider a serious edge case:
+what if k=0:
+then the numbers will be repeated 
+so to avoid that we ensure that every node to hv only one child
+*/
