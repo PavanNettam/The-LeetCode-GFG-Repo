@@ -8,7 +8,7 @@ class Solution{
 	/*
 	Extension of LIS:
     	-Find LIS DP
-    	-Reverse the array ans find LIS dp
+    	-Reverse the array ans find LIS dp and then reverse the dp2 array
     	-Add up both DP arrays element wise and substract 1
 	*/
 	void findLIS(vector<int>nums, vector<int> &dp){
