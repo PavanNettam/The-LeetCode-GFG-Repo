@@ -31,19 +31,19 @@ class Solution {
             }
         }
         vector<int> dist(N,100000);
-        vector<int> topo;
-        while(!s.empty()){
-            topo.push_back(s.top());
-            s.pop();
-        }
         dist[0] = 0;
-        for(int i=0;i<N;i++){
-            for(auto j:adj[i]){
-                int ele = j.first;
-                int ed = j.second;
-                dist[ele] = min(ed+dist[i],dist[ele]);
+        while(!s.empty()){
+            int cur = s.top();
+            s.pop();
+            for(auto i:adj[cur]){
+                int next = i.first;
+                int nextEdge = i.second;
+                if(dist[next] > dist[cur]+nextEdge){
+                    dist[next] = dist[cur]+nextEdge;
+                }
             }
         }
+        
         for(int i=0;i<N;i++){
             if(dist[i]>=100000){
                 dist[i] = -1;
@@ -52,7 +52,6 @@ class Solution {
         return dist;
     }
 };
-
 
 //{ Driver Code Starts.
 int main() {
