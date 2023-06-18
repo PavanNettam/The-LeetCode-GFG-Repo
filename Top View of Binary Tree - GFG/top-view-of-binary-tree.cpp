@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial Template for C++
 
 #include <bits/stdc++.h>
@@ -88,9 +88,7 @@ Node* buildTree(string str)
 }
 
 
- // } Driver Code Ends
-
-
+// } Driver Code Ends
 /*
 struct Node
 {
@@ -106,34 +104,32 @@ class Solution
     //from left to right in Binary Tree.
     vector<int> topView(Node *root)
     {
-        map<int,int> temp;
-        queue<pair<Node*,int>> q;
-        q.push(make_pair(root,0));
+        queue<pair<int,Node*>> q; //{verical level,node}
+        map<int,int> m; //{verical level,node val}
+        q.push({0,root});
         while(!q.empty()){
-            pair<Node*,int> p = q.front();
+            auto ele = q.front();
             q.pop();
-            if(p.first->left != NULL) q.push(make_pair(p.first->left,p.second-1));
-            if(p.first->right != NULL) q.push(make_pair(p.first->right,p.second+1));
-            if(temp.find(p.second) == temp.end()){
-                temp[p.second] = p.first->data;
+            int level = ele.first;
+            Node* node = ele.second;
+            if(m.find(level) == m.end()){
+                m[level] = node->data;
             }
+            if(node->left != NULL) q.push({level-1,node->left});
+            if(node->right != NULL) q.push({level+1,node->right});
         }
         vector<int> ans;
-        for(auto i:temp){
+        for(auto i:m){
             ans.push_back(i.second);
         }
         return ans;
     }
 
 };
-/*
-Before sloving this problem refer to the bottom view probelm,
-In this problem: map is used in such a way that it is not over written so that
-we will get the first value in the vertical line.
-*/
 
 
-// { Driver Code Starts.
+
+//{ Driver Code Starts.
 
 int main() {
     int tc;
@@ -150,4 +146,5 @@ int main() {
         cout<<endl;
     }
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
