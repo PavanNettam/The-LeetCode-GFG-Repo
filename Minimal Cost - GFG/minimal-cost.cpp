@@ -8,12 +8,13 @@ class Solution {
   public:
     int minimizeCost(vector<int>& height, int n, int k) {
         vector<int> dp(n,0);
+        dp[0] = 0;
         for(int i=1;i<n;i++){
-            int temp = i-1;
+            int j = i-1;
             int mini = INT_MAX;
-            while(temp >= 0 && i-temp <= k){
-                mini = min(mini,abs(height[temp]-height[i])+dp[temp]);
-                temp--;
+            while(j>=0 && i-j<=k){
+                mini = min(mini,dp[j]+abs(height[i]-height[j]));
+                j--;
             }
             dp[i] = mini;
         }
