@@ -9,22 +9,22 @@ using namespace std;
 
 class Solution{   
 public:
+    bool compute(vector<int>& arr,int sum,int x,vector<vector<int>> &mem){
+        if(sum == 0) return 1;
+        if(x == arr.size()) return 0;
+        if(mem[x][sum] != -1) return mem[x][sum];
+        int take = 0;
+        int not_take = 0;
+        if(sum >= arr[x]){
+            take = compute(arr,sum-arr[x],x+1,mem);
+        }
+        not_take = compute(arr,sum,x+1,mem);
+        return mem[x][sum] = take || not_take;
+    }
     bool isSubsetSum(vector<int>arr, int sum){
         int n = arr.size();
-        vector<vector<int>> dp(n,vector<int>(sum+1,0));
-        for(int i=0;i<n;i++) dp[i][0] = 1;
-        if(sum>=arr[0]) dp[0][arr[0]] = 1;
-        for(int i=1;i<n;i++){
-            for(int j=1;j<=sum;j++){
-                int not_take = dp[i-1][j];
-                int take = 0;
-                if(arr[i] <= j){
-                    take = dp[i-1][j-arr[i]];
-                }
-                dp[i][j] = take | not_take;
-            }
-        }
-        return dp[n-1][sum];
+        vector<vector<int>> mem(n+1,vector<int>(sum+1,-1));
+        return compute(arr,sum,0,mem);
     }
 };
 
