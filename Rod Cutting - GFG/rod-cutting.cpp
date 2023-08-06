@@ -10,21 +10,22 @@ using namespace std;
 
 class Solution{
   public:
+    int solve(int price[], int i, int leftout_len, vector<vector<int>> &dp){
+        if(leftout_len == 0 || i<0){
+            return 0;
+        }
+        if(dp[i][leftout_len] != -1) return dp[i][leftout_len];
+        int cut = 0;
+        int dont_cut = 0;
+        if(leftout_len >= i+1){
+            cut = price[i] + solve(price,i,leftout_len-(i+1),dp);
+        }
+        dont_cut = 0 + solve(price,i-1,leftout_len,dp);
+        return dp[i][leftout_len] = max(cut,dont_cut);
+    }
     int cutRod(int price[], int n) {
-        vector<vector<int>> dp(n, vector<int>(n+1, 0));
-        for(int i=0;i<n+1;i++){
-            dp[0][i] = price[0]*i;
-        }
-        for(int i=1;i<n;i++){
-            for(int j=0;j<=n;j++){
-                int not_take = dp[i-1][j];
-                int take = 0;
-                int len = i+1;
-                if(len <= j) take = price[i] + dp[i][j-len];
-                dp[i][j] = max(take,not_take);
-            }
-        }
-        return dp[n-1][n];
+        vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
+        return solve(price,n-1,n,dp);
     }
 };
 
